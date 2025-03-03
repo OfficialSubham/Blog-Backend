@@ -1,13 +1,8 @@
-import {array, string, z} from "zod"
 import { Context } from "hono";
 import { PrismaClient } from "@prisma/client/edge"
 import { withAccelerate } from "@prisma/extension-accelerate"
+import { blogSchema } from "@codersubham/validuser";
 
-export const blogSchema = z.object({
-    title: z.string().min(5),
-    description: z.string().min(5),
-    tag: z.optional(z.array(z.string()))
-}).strict()
 
 export const createBlog = async (c: Context)=>{
     try {

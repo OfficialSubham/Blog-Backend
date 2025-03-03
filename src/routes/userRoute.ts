@@ -14,7 +14,7 @@ const userSchema = z.object({
     password: z.string().min(5),
     firstName: z.string().min(3),
     lastName: z.string().min(3)
-})
+}).strict()
 
 type UserSchema = z.infer<typeof userSchema>;
 //Create user

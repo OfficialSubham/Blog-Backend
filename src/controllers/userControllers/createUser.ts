@@ -30,9 +30,11 @@ export const createUser = async (c: Context) => {
         })
 
         const token = jwt.sign(res, c.env.SECRETKEY)
+
         return c.json({ message: "user created successfully", token })
 
     } catch (error) {
+
         return c.json({ message: "Some error occured", error })
     }
 

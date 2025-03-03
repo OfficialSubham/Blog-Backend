@@ -1,16 +1,6 @@
 import { Context, Next } from "hono";
-import { PrismaClient } from "@prisma/client/edge";
-import { withAccelerate } from "@prisma/extension-accelerate";
 import { verify, } from "jsonwebtoken"
-
-
-type Credentials = {
-    username: string,
-    id: number | string,
-    firstName: string,
-    lastName: string,
-    iat?: number
-}
+import { Credentials } from "@codersubham/validuser";
 
 
 export const checkUserLoggedIn = async (c: Context, next: Next) => {

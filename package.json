@@ -5,6 +5,7 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
+    "@codersubham/validuser": "^1.0.2",
     "@prisma/adapter-d1": "^6.4.1",
     "@prisma/client": "^6.4.1",
     "@prisma/extension-accelerate": "^1.2.2",
@@ -21,6 +22,7 @@
     "@cloudflare/workers-types": "^4.20250109.0",
     "@types/node": "^22.13.5",
     "prisma": "^6.4.1",
+    "typescript": "^5.8.2",
     "wrangler": "^3.110.0"
   }
 }
