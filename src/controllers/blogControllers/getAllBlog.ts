@@ -11,6 +11,13 @@ export const getAllBlog = async (c: Context) => {
         const blogs = await prisma.blog.findMany({
             where: {
                 deleted: false
+            },
+            include: {
+                user: {
+                    omit: {
+                        password: true
+                    }
+                }
             }
         })
         return c.json({message: "All blog", blogs})

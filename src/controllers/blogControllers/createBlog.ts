@@ -15,16 +15,31 @@ export const createBlog = async (c: Context)=>{
             datasourceUrl: c.env.DATABASE_URL
         }).$extends(withAccelerate())
         const {id} = c.get("data")
-        const insensitiveTag = body.tag.map((tag:string) => tag.toLowerCase())
+        const {title, description, tag} = body
+        console.log(id)
+        const insensitiveTag = tag.map((tag:string) => tag.toLowerCase())
+        // const blog = await prisma.blog.create({
+        //     data: {
+        //       title,
+        //       description,
+        //       ["tag"]: insensitiveTag,
+        //       userId: id
+        //     }
+        // }) 
         const blog = await prisma.blog.create({
             data: {
-              ...body,
-              ["tag"]: insensitiveTag,
-              userId: id
+                title,
+                description,
+                ["tag"]: insensitiveTag,
+                user: {
+                    connect: {
+                        id
+                    } 
+                }
             }
-        }) 
+        })
         return c.json({message: "working", blog})
     } catch (error) {
-        
+        console.log(error)
     }
 }

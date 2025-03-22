@@ -1,6 +1,6 @@
 import { Context } from "hono";
 import { compare } from "bcrypt-ts"
-import jwt from "jsonwebtoken";
+import { sign } from "hono/jwt";
 
 export const loginUser = async (c: Context) => {
     try {
@@ -11,7 +11,7 @@ export const loginUser = async (c: Context) => {
         if(!matchPassword) {
             return c.json({message: "Enter valid credentials"})
         }
-        const token = jwt.sign({username: user.username, id: user.id, firstName: user.firstName, lastName: user.lastName}, c.env.SECRETKEY)
+        const token = await sign({username: user.username, id: user.id, firstName: user.firstName, lastName: user.lastName}, c.env.SECRETKEY)
 
         return c.json({message: "login successfull", token})
 

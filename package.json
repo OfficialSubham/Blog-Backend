@@ -5,7 +5,7 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
-    "@codersubham/validuser": "^1.0.2",
+    "@codersubham/validuser": "^1.0.4",
     "@prisma/adapter-d1": "^6.4.1",
     "@prisma/client": "^6.4.1",
     "@prisma/extension-accelerate": "^1.2.2",
@@ -13,6 +13,7 @@
     "@types/jsonwebtoken": "^9.0.9",
     "bcrypt": "^5.1.1",
     "bcrypt-ts": "^6.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "hono": "^4.7.2",
     "jsonwebtoken": "^9.0.2",
@@ -21,7 +22,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250109.0",
     "@types/node": "^22.13.5",
-    "prisma": "^6.4.1",
+    "prisma": "^6.5.0",
     "typescript": "^5.8.2",
     "wrangler": "^3.110.0"
   }

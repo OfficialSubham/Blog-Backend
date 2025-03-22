@@ -2,7 +2,7 @@ import { Context } from "hono";
 import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { hash } from "bcrypt-ts"
-import jwt from "jsonwebtoken";
+import { sign } from "hono/jwt";
 
 
 export const createUser = async (c: Context) => {
@@ -29,7 +29,7 @@ export const createUser = async (c: Context) => {
             }
         })
 
-        const token = jwt.sign(res, c.env.SECRETKEY)
+        const token = await sign(res, c.env.SECRETKEY)
 
         return c.json({ message: "user created successfully", token })
 

@@ -5,11 +5,13 @@ import { withAccelerate } from "@prisma/extension-accelerate"
 export const searchBlogs = async (c: Context) => {
 
     try {
-        const query = c.req.param("query")
-        if (!query) {
-            return c.json({ message: "Enter valid search" }, 400)
-        }
+        const query = c.req.query("search")
+        console.log(query)
         const prisma = new PrismaClient({ datasourceUrl: c.env.DATABASE_URL }).$extends(withAccelerate())
+        if (!query) {
+            const blogs = await prisma.blog.findMany({})
+            return c.json({message: "Here is all blog", blogs})
+        }
         const relatedBlogs = await prisma.blog.findMany({
             where: {
                 OR: [{
@@ -18,6 +20,9 @@ export const searchBlogs = async (c: Context) => {
                     description: {contains: query, mode: "insensitive"}
                 }],
                 deleted: false
+            },
+            include: {
+                user: true
             }
         })
         if(!relatedBlogs[0]) {

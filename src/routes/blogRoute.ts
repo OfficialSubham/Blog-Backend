@@ -30,7 +30,7 @@ blogRoute.get("/getyourblogs", checkUserLoggedIn, getYourBlogs)
 
 //Search Specific Blog
 
-blogRoute.get("/searchblogs/:query", checkUserLoggedIn, searchBlogs)
+blogRoute.get("/searchblogs", checkUserLoggedIn, searchBlogs)
 
 //Search Blog with tag
 
